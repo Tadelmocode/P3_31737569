@@ -95,7 +95,7 @@ app.get('/ping', (req: Request, res: Response) => {
 // Ruta raíz
 app.get('/', (req: Request, res: Response) => {
   res.json({
-    message: 'API RESTful - Proyecto 3',
+    message: 'API RESTful Jesus Tadelmo!',
     endpoints: {
       about: '/about',
       ping: '/ping',
