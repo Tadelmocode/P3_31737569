@@ -14,7 +14,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 // Configuración de Swagger
-const swaggerOptions = {
+const swaggerOptions = {//opcione de swagger
   definition: {
     openapi: '3.0.0',
     info: {
