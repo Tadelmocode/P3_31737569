@@ -18,7 +18,7 @@ const swaggerOptions = {//opcione de swagger
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'API RESTful - Proyecto 3',
+      title: 'API RESTful Jesus Tadelmo',
       version: '1.0.0',
       description: 'API desarrollada con Node.js, Express y TypeScript',
     },
