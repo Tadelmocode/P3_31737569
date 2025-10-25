@@ -86,6 +86,7 @@ app.get('/about', (req: Request, res: Response) => {
  *       200:
  *         description: Servidor funcionando correctamente
  */
+//este endpoint sirve para verificar que el servidor está activo
 app.get('/ping', (req: Request, res: Response) => {
   res.status(200).send();
 });
