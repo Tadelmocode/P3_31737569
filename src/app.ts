@@ -87,9 +87,7 @@ app.get('/about', (req: Request, res: Response) => {
  *         description: Servidor funcionando correctamente
  */
 app.get('/ping', (req: Request, res: Response) => {
-  res.status(200).json({
-    status: 'success'
-  });
+  res.status(200).send();
 });
 
 // Ruta raíz
