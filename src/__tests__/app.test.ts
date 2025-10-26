@@ -1,5 +1,6 @@
 import request from 'supertest';
-import app from '../app';
+import {app} from '../app';
+import { describe, it, expect } from '@jest/globals';
 
 describe('API Endpoints Tests', () => {
   describe('GET /ping', () => {

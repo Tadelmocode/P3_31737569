@@ -8,4 +8,5 @@ module.exports = {
     '!src/**/*.d.ts',
     '!src/server.ts',
   ],
+  maxWorkers: 1, // Run tests sequentially to avoid database conflicts
 };
