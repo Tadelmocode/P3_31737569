@@ -2,7 +2,7 @@
   "name": "p3_31737569",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "dev": "nodemon --exec \"node --no-warnings --import tsx/esm src/server.ts\"",
     "build": "tsc && tsc-alias",

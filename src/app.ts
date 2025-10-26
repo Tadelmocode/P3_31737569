@@ -5,11 +5,11 @@ import morgan from 'morgan';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
 // Routes
-import authRoutes from './routes/auth';
-import userRoutes from './routes/users';
+import authRoutes from './routes/auth.js';
+import userRoutes from './routes/users.js';
 
-import sequelize from './config/database';
-import User from './models/User.model';
+import sequelize from './config/database.js';
+import User from './models/User.model.js';
 
 const app = express();
 
