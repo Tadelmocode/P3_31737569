@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinyl Store API - Tienda de Vinilos</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-gradient"></div>
+    
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="logo-section">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    <h1 class="logo-text">Vinyl Store API</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#features" class="nav-link">Características</a></li>
+                    <li><a href="#endpoints" class="nav-link">Endpoints</a></li>
+                    <li><a href="/api-docs" class="nav-link nav-link-primary">Documentación</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2 class="hero-title">API RESTful para Tienda de Vinilos</h2>
+                <p class="hero-subtitle">Gestiona tu colección de vinilos con una API moderna, segura y escalable</p>
+                <div class="hero-actions">
+                    <a href="/api-docs" class="btn btn-primary">Explorar API</a>
+                    <a href="#features" class="btn btn-secondary">Conocer más</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="vinyl-record"></div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features-section">
+            <h2 class="section-title">Características Principales</h2>
+            <div class="features-grid">
+                <article class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3 class="feature-title">Autenticación JWT</h3>
+                    <p class="feature-description">Sistema de autenticación seguro con tokens JWT para proteger tus endpoints</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">🎵</div>
+                    <h3 class="feature-title">Gestión de Productos</h3>
+                    <p class="feature-description">CRUD completo de vinilos con atributos personalizados y control de stock</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">📁</div>
+                    <h3 class="feature-title">Categorías y Tags</h3>
+                    <p class="feature-description">Organiza y clasifica tus vinilos con categorías y etiquetas personalizadas</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3 class="feature-title">Búsqueda Avanzada</h3>
+                    <p class="feature-description">Filtros múltiples, paginación inteligente y ordenamiento flexible</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3 class="feature-title">URLs Amigables</h3>
+                    <p class="feature-description">Self-healing URLs con redirección automática para mejor experiencia</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3 class="feature-title">Respuestas Estándar</h3>
+                    <p class="feature-description">Formato JSend consistente en todas las respuestas de la API</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Endpoints Section -->
+        <section id="endpoints" class="endpoints-section">
+            <h2 class="section-title">Endpoints Disponibles</h2>
+            <div class="endpoints-container">
+                <div class="endpoint-group">
+                    <h3 class="endpoint-group-title">🔐 Autenticación</h3>
+                    <ul class="endpoint-list">
+                        <li class="endpoint-item">
+                            <span class="endpoint-method post">POST</span>
+                            <span class="endpoint-path">/auth/register</span>
+                            <span class="endpoint-desc">Registrar nuevo usuario</span>
+                        </li>
+                        <li class="endpoint-item">
+                            <span class="endpoint-method post">POST</span>
+                            <span class="endpoint-path">/auth/login</span>
+                            <span class="endpoint-desc">Iniciar sesión</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="endpoint-group">
+                    <h3 class="endpoint-group-title">👥 Usuarios</h3>
+                    <ul class="endpoint-list">
+                        <li class="endpoint-item">
+                            <span class="endpoint-method get">GET</span>
+                            <span class="endpoint-path">/users</span>
+                            <span class="endpoint-desc">Listar todos los usuarios</span>
+                        </li>
+                        <li class="endpoint-item">
+                            <span class="endpoint-method get">GET</span>
+                            <span class="endpoint-path">/users/:id</span>
+                            <span class="endpoint-desc">Obtener usuario por ID</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="endpoint-group">
+                    <h3 class="endpoint-group-title">🎵 Productos</h3>
+                    <ul class="endpoint-list">
+                        <li class="endpoint-item">
+                            <span class="endpoint-method get">GET</span>
+                            <span class="endpoint-path">/products</span>
+                            <span class="endpoint-desc">Listar todos los vinilos</span>
+                        </li>
+                        <li class="endpoint-item">
+                            <span class="endpoint-method get">GET</span>
+                            <span class="endpoint-path">/products/:id</span>
+                            <span class="endpoint-desc">Obtener vinilo por ID</span>
+                        </li>
+                        <li class="endpoint-item">
+                            <span class="endpoint-method post">POST</span>
+                            <span class="endpoint-path">/products</span>
+                            <span class="endpoint-desc">Crear nuevo vinilo</span>
+                        </li>
+                        <li class="endpoint-item">
+                            <span class="endpoint-method put">PUT</span>
+                            <span class="endpoint-path">/products/:id</span>
+                            <span class="endpoint-desc">Actualizar vinilo</span>
+                        </li>
+                        <li class="endpoint-item">
+                            <span class="endpoint-method delete">DELETE</span>
+                            <span class="endpoint-path">/products/:id</span>
+                            <span class="endpoint-desc">Eliminar vinilo</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="endpoint-group">
+                    <h3 class="endpoint-group-title">📁 Categorías</h3>
+                    <ul class="endpoint-list">
+                        <li class="endpoint-item">
+                            <span class="endpoint-method get">GET</span>
+                            <span class="endpoint-path">/categories</span>
+                            <span class="endpoint-desc">Listar categorías</span>
+                        </li>
+                        <li class="endpoint-item">
+                            <span class="endpoint-method post">POST</span>
+                            <span class="endpoint-path">/categories</span>
+                            <span class="endpoint-desc">Crear categoría</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="endpoint-group">
+                    <h3 class="endpoint-group-title">🏷️ Tags</h3>
+                    <ul class="endpoint-list">
+                        <li class="endpoint-item">
+                            <span class="endpoint-method get">GET</span>
+                            <span class="endpoint-path">/tags</span>
+                            <span class="endpoint-desc">Listar tags</span>
+                        </li>
+                        <li class="endpoint-item">
+                            <span class="endpoint-method post">POST</span>
+                            <span class="endpoint-path">/tags</span>
+                            <span class="endpoint-desc">Crear tag</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Developer Info Section -->
+        <section class="developer-section">
+            <div class="developer-card">
+                <h3 class="developer-title">Desarrollado por</h3>
+                <p class="developer-name">Jesus Tadelmo</p>
+                <div class="developer-info">
+                    <span class="info-badge">Cédula: 31737569</span>
+                    <span class="info-badge">Sección 2</span>
+                </div>
+                <p class="developer-email">jesustadelmo1700@gmail.com</p>
+            </div>
+        </section>
+
+        <!-- Quick Links Section -->
+        <section class="quick-links-section">
+            <h2 class="section-title">Acceso Rápido</h2>
+            <div class="quick-links-grid">
+                <a href="/api-docs" class="quick-link-card">
+                    <span class="quick-link-icon">📚</span>
+                    <span class="quick-link-text">Documentación Swagger</span>
+                </a>
+                <a href="/about" class="quick-link-card">
+                    <span class="quick-link-icon">ℹ️</span>
+                    <span class="quick-link-text">Información del Desarrollador</span>
+                </a>
+                <a href="/ping" class="quick-link-card">
+                    <span class="quick-link-icon">✅</span>
+                    <span class="quick-link-text">Health Check</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p class="footer-text">&copy; 2024 Vinyl Store API. Desarrollado con Node.js, Express y TypeScript.</p>
+            <div class="footer-links">
+                <a href="/api-docs" class="footer-link">API Docs</a>
+                <a href="/about" class="footer-link">Acerca de</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/main.js"></script>
+</body>
+</html>
