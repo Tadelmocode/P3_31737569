@@ -316,6 +316,11 @@ describe('Products API', () => {
     });
 
     it('should update product with token', async () => {
+      // Verificar que el producto existe y pertenece al usuario correcto
+      const product = await Product.findByPk(productId);
+      expect(product).not.toBeNull();
+      expect(product?.userId).toBe(userId);
+
       const response = await request(app)
         .put(`/products/id/${productId}`)
         .set('Authorization', `Bearer ${authToken}`)
@@ -363,6 +368,7 @@ describe('Products API', () => {
     });
 
     it('should fail when deleting non-owned product', async () => {
+      // Primero verificar que el otro usuario existe
       const otherUserResponse = await request(app)
         .post('/auth/login')
         .send({
@@ -370,6 +376,8 @@ describe('Products API', () => {
           password: 'password123',
         });
 
+      expect(otherUserResponse.status).toBe(200);
+      expect(otherUserResponse.body.data).toHaveProperty('token');
       const otherToken = otherUserResponse.body.data.token;
 
       const response = await request(app)
@@ -381,7 +389,7 @@ describe('Products API', () => {
     });
 
     it('should delete product with token', async () => {
-      // Crear un producto para eliminar
+      // Crear un producto para eliminar con el usuario correcto
       const createResponse = await request(app)
         .post('/products')
         .set('Authorization', `Bearer ${authToken}`)
@@ -391,7 +399,13 @@ describe('Products API', () => {
           categoryId,
         });
 
+      expect(createResponse.status).toBe(201);
       const productToDeleteId = createResponse.body.data.product.id;
+
+      // Verificar que el producto pertenece al usuario correcto
+      const productToDelete = await Product.findByPk(productToDeleteId);
+      expect(productToDelete).not.toBeNull();
+      expect(productToDelete?.userId).toBe(userId);
 
       const response = await request(app)
         .delete(`/products/id/${productToDeleteId}`)

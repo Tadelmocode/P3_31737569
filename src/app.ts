@@ -4,8 +4,8 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
-import path from 'path';
-import { fileURLToPath } from 'url';
+// import path from 'path';
+// import { fileURLToPath } from 'url';
 // Routes
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/users.js';
@@ -15,8 +15,8 @@ import tagRoutes from './routes/tags.js';
 
 import sequelize from './config/database.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -27,7 +27,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 // Servir archivos estáticos
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
 // Configuración de Swagger
 const swaggerOptions = {

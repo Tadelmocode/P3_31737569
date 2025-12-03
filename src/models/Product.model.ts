@@ -24,78 +24,78 @@ class Product extends Model {
     type: DataType.STRING,
     allowNull: false,
   })
-  name!: string;
+  declare name: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: true,
     unique: true,
   })
-  slug?: string;
+  declare slug: string;
 
   @Column({
     type: DataType.TEXT,
     allowNull: true,
   })
-  description?: string;
+  declare description: string;
 
   @Column({
     type: DataType.DECIMAL(10, 2),
     allowNull: false,
   })
-  price!: number;
+  declare price: number;
 
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
     defaultValue: 0,
   })
-  stock!: number;
+  declare stock: number;
 
   // Atributos específicos para Vinilos
   @Column({
     type: DataType.STRING,
     allowNull: true,
   })
-  artist?: string;
+  declare artist: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: true,
   })
-  label?: string;
+  declare label: string;
 
   @Column({
     type: DataType.INTEGER,
     allowNull: true,
   })
-  releaseYear?: number;
+  declare releaseYear: number;
 
   @Column({
     type: DataType.STRING,
     allowNull: true,
   })
-  format?: string; // LP, EP, Single, etc.
+  declare format: string; // LP, EP, Single, etc.
 
   @Column({
     type: DataType.STRING,
     allowNull: true,
   })
-  condition?: string; // Mint, Near Mint, Very Good, etc.
+  declare condition: string; // Mint, Near Mint, Very Good, etc.
 
   @Column({
     type: DataType.STRING,
     allowNull: true,
     unique: true,
   })
-  sku?: string;
+  declare sku: string;
 
   @Column({
     type: DataType.BOOLEAN,
     allowNull: false,
     defaultValue: true,
   })
-  isActive!: boolean;
+  declare isActive: boolean;
 
   // Relación con User
   @ForeignKey(() => User)
@@ -103,10 +103,10 @@ class Product extends Model {
     type: DataType.INTEGER,
     allowNull: false,
   })
-  userId!: number;
+  declare userId: number;
 
   @BelongsTo(() => User)
-  user!: User;
+  declare user: User;
 
   // Relación con Category
   @ForeignKey(() => Category)
@@ -114,14 +114,14 @@ class Product extends Model {
     type: DataType.INTEGER,
     allowNull: false,
   })
-  categoryId!: number;
+  declare categoryId: number;
 
   @BelongsTo(() => Category)
-  category!: Category;
+  declare category: Category;
 
   // Relación muchos-a-muchos con Tags
   @BelongsToMany(() => Tag, () => ProductTag)
-  tags?: Tag[];
+  declare tags: Tag[];
 
   // Generar slug único antes de crear
   @BeforeCreate

@@ -17,7 +17,7 @@ class User extends Model {
     type: DataType.STRING,
     allowNull: false,
   })
-  nombreCompleto!: string;
+  declare nombreCompleto: string;
 
   @Column({
     type: DataType.STRING,
@@ -27,17 +27,22 @@ class User extends Model {
       isEmail: true,
     },
   })
-  email!: string;
+  declare email: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  password!: string;
+  declare password: string;
 
   // Método para comparar contraseñas
   public validPassword(password: string): boolean {
-    return bcrypt.compareSync(password, this.password);
+    try {
+      return bcrypt.compareSync(password, this.password);
+    } catch (error) {
+      console.error('Error comparing passwords:', error);
+      return false;
+    }
   }
 
   @BeforeCreate

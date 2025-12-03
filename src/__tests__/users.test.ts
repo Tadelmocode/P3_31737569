@@ -47,6 +47,7 @@ describe('Users Endpoints', () => {
 
     expect(res.statusCode).toEqual(201);
     expect(res.body.status).toEqual('success');
+    expect(res.body.data).toHaveProperty('email');
     expect(res.body.data.email).toEqual('another@example.com');
     expect(res.body.data).toHaveProperty('token');
   });

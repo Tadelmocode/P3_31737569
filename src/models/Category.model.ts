@@ -18,16 +18,16 @@ class Category extends Model {
     allowNull: false,
     unique: true,
   })
-  name!: string;
+  declare name: string;
 
   @Column({
     type: DataType.TEXT,
     allowNull: true,
   })
-  description?: string;
+  declare description: string;
 
   @HasMany(() => Product)
-  products?: Product[];
+  declare products: Product[];
 }
 
 export default Category;

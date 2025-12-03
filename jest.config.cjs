@@ -1,5 +1,5 @@
 module.exports = {
-  preset: 'ts-jest',
+  preset: 'ts-jest/presets/default-esm',
   testEnvironment: 'node',
   roots: ['<rootDir>/src'],
   testMatch: ['**/__tests__/**/*.test.ts'],
@@ -12,24 +12,26 @@ module.exports = {
     '!src/scripts/**',
   ],
   maxWorkers: 1,
-  globals: {
-    'ts-jest': {
-      tsconfig: {
-        types: ['jest', 'node'],
-        module: 'commonjs',
-        target: 'ES2020',
-        esModuleInterop: true,
-        allowSyntheticDefaultImports: true,
-        experimentalDecorators: true,
-        emitDecoratorMetadata: true,
-        isolatedModules: false,
-      },
-      diagnostics: {
-        ignoreCodes: [151002, 1343]
-      }
-    }
-  },
+  extensionsToTreatAsEsm: ['.ts'],
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',
+  },
+  transform: {
+    '^.+\\.ts$': [
+      'ts-jest',
+      {
+        useESM: true,
+        tsconfig: {
+          types: ['jest', 'node'],
+          module: 'ESNext',
+          target: 'ES2022',
+          esModuleInterop: true,
+          allowSyntheticDefaultImports: true,
+          experimentalDecorators: true,
+          emitDecoratorMetadata: true,
+          isolatedModules: true,
+        },
+      },
+    ],
   },
 };

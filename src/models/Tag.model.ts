@@ -17,7 +17,7 @@ class Tag extends Model {
     allowNull: false,
     unique: true,
   })
-  name!: string;
+  declare name: string;
 }
 
 export default Tag;

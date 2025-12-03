@@ -23,7 +23,9 @@ describe('Auth Endpoints', () => {
 
     expect(res.statusCode).toEqual(201);
     expect(res.body.status).toEqual('success');
+    expect(res.body.data).toHaveProperty('user');
     expect(res.body.data.user).toHaveProperty('id');
+    expect(res.body.data.user).toHaveProperty('email');
     expect(res.body.data.user.email).toEqual('authtest@example.com');
     expect(res.body.data).toHaveProperty('token');
   });

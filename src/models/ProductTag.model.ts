@@ -12,14 +12,14 @@ class ProductTag extends Model {
     type: DataType.INTEGER,
     allowNull: false,
   })
-  productId!: number;
+  declare productId: number;
 
   @ForeignKey(() => Tag)
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
   })
-  tagId!: number;
+  declare tagId: number;
 }
 
 export default ProductTag;
