@@ -12,6 +12,7 @@ import userRoutes from './routes/users.js';
 import productRoutes, { selfHealingRouter } from './routes/products.js';
 import categoryRoutes from './routes/categories.js';
 import tagRoutes from './routes/tags.js';
+import orderRoutes from './routes/orders.js';
 
 import sequelize from './config/database.js';
 
@@ -87,6 +88,10 @@ Para probar los endpoints protegidos:
       { 
         name: 'Tags', 
         description: '🏷️ Gestión de etiquetas para vinilos (requiere autenticación)' 
+      },
+      { 
+        name: 'Orders', 
+        description: '🛒 Gestión de órdenes y checkout transaccional (requiere autenticación)' 
       },
       { 
         name: 'System', 
@@ -221,6 +226,87 @@ Para probar los endpoints protegidos:
           properties: {
             status: { type: 'string', example: 'error' },
             message: { type: 'string', example: 'Error interno del servidor' },
+          },
+        },
+        Order: {
+          type: 'object',
+          properties: {
+            id: { type: 'integer', example: 1 },
+            userId: { type: 'integer', example: 1 },
+            status: { 
+              type: 'string', 
+              enum: ['PENDING', 'COMPLETED', 'CANCELED', 'PAYMENT_FAILED'],
+              example: 'COMPLETED',
+              description: 'Estado de la orden'
+            },
+            totalAmount: { type: 'number', format: 'float', example: 89.98 },
+            paymentMethod: { type: 'string', example: 'CreditCard' },
+            paymentReference: { type: 'string', example: 'txn_abc123xyz' },
+            items: {
+              type: 'array',
+              items: { $ref: '#/components/schemas/OrderItem' },
+            },
+            createdAt: { type: 'string', format: 'date-time' },
+            updatedAt: { type: 'string', format: 'date-time' },
+          },
+        },
+        OrderItem: {
+          type: 'object',
+          properties: {
+            id: { type: 'integer', example: 1 },
+            orderId: { type: 'integer', example: 1 },
+            productId: { type: 'integer', example: 5 },
+            quantity: { type: 'integer', example: 2, minimum: 1 },
+            unitPrice: { type: 'number', format: 'float', example: 44.99 },
+            product: { $ref: '#/components/schemas/Product' },
+            createdAt: { type: 'string', format: 'date-time' },
+            updatedAt: { type: 'string', format: 'date-time' },
+          },
+        },
+        OrderInput: {
+          type: 'object',
+          required: ['items', 'paymentDetails'],
+          properties: {
+            items: {
+              type: 'array',
+              description: 'Lista de productos a comprar',
+              items: {
+                type: 'object',
+                required: ['productId', 'quantity'],
+                properties: {
+                  productId: { type: 'integer', example: 1, description: 'ID del producto' },
+                  quantity: { type: 'integer', example: 2, minimum: 1, description: 'Cantidad a comprar' },
+                },
+              },
+            },
+            paymentMethod: {
+              type: 'string',
+              enum: ['CreditCard', 'PayPal', 'BankTransfer'],
+              default: 'CreditCard',
+              description: 'Método de pago (Strategy Pattern)',
+            },
+            paymentDetails: { $ref: '#/components/schemas/PaymentDetails' },
+          },
+        },
+        PaymentDetails: {
+          type: 'object',
+          required: ['card-number', 'cvv', 'expiration-month', 'expiration-year', 'full-name', 'currency'],
+          description: 'Datos de pago para FakePayment API. El campo full-name controla el resultado: APPROVED=éxito, REJECTED=rechazado, ERROR=error, INSUFFICIENT=fondos insuficientes',
+          properties: {
+            'card-number': { 
+              type: 'string', 
+              example: '4111111111111111',
+              description: 'Número de tarjeta (Visa: 4111111111111111, Mastercard: 5555555555554444)'
+            },
+            cvv: { type: 'string', example: '123' },
+            'expiration-month': { type: 'string', example: '12' },
+            'expiration-year': { type: 'string', example: '2025' },
+            'full-name': { 
+              type: 'string', 
+              example: 'APPROVED',
+              description: 'Controla resultado: APPROVED, REJECTED, ERROR, INSUFFICIENT'
+            },
+            currency: { type: 'string', example: 'USD', default: 'USD' },
           },
         },
       },
@@ -737,6 +823,7 @@ app.use('/users', userRoutes);
 app.use('/categories', categoryRoutes);
 app.use('/tags', tagRoutes);
 app.use('/products', productRoutes);
+app.use('/orders', orderRoutes);
 app.use('/p', selfHealingRouter); // Self-healing URL router      
 
 /**

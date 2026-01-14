@@ -6,6 +6,8 @@ import Product from '../models/Product.model.js';
 import Category from '../models/Category.model.js';
 import Tag from '../models/Tag.model.js';
 import ProductTag from '../models/ProductTag.model.js';
+import Order from '../models/Order.model.js';
+import OrderItem from '../models/OrderItem.model.js';
 
 // Determinar el directorio base
 const isTest = process.env.NODE_ENV === 'test' || process.env.JEST_WORKER_ID !== undefined;
@@ -17,7 +19,12 @@ const sequelize = new Sequelize({
   dialect: 'sqlite',
   storage: dbPath,
   logging: false,
-  models: [User, Category, Tag, Product, ProductTag], 
+  models: [User, Category, Tag, Product, ProductTag, Order, OrderItem], 
 });
+
+// Establecer relaciones Order <-> OrderItem después de cargar los modelos
+// para evitar dependencia circular
+Order.hasMany(OrderItem, { foreignKey: 'orderId', as: 'items' });
+OrderItem.belongsTo(Order, { foreignKey: 'orderId', as: 'order' });
 
 export default sequelize;
